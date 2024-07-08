@@ -87,9 +87,22 @@ textarea:focus {
   padding: 1rem;
   background-color: #f8f9fa;
   border-top: 1px solid #e9ecef;
+  display: flex;
   text-align: center;
   justify-content: center;
 }
+
+
+.journalFooter .emotionDropDown {
+margin: 0 15px;
+}
+
+.journalFooter .photoUrlInput{
+  border: none;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
 
 .tagsBtn {
   margin: 0 20px;
