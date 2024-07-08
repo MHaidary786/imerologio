@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import classes from "./journals.module.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import {
   IoIosHeart,
   IoIosPricetag,
@@ -51,9 +51,7 @@ export default function Journals() {
     navigate("/newjournal");
   };
 
-  const EditJournal = (_id) => {
-    navigate("/");
-  };
+  const EditJournal = (_id) => {};
 
   const SortJournals = () => {
     setJournals(
@@ -84,7 +82,7 @@ export default function Journals() {
               <div className={classes.journalCard} key={journal._id}>
                 <div
                   className={classes.leftSide}
-                  onClick={() => EditJournal(journal._id)}
+                  onClick={() => navigate(`/editor/${journal._id}`)}
                 >
                   <h4>
                     <span>{journal.text.substring(0, 35)}</span>
@@ -103,6 +101,7 @@ export default function Journals() {
                     ))}
                   </p>
                 </div>
+
                 <div className={classes.rightSide}>
                   <div className={classes.imageMask}>
                     <img src={journal.photoUrl} alt="Jounal pic" />

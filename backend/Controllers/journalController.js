@@ -20,7 +20,7 @@ const getOneJournal = async (req, res) => {
     console.log(req.user.userId);
     const journalID = req.params.id;
     const journal = await JournalModel.find({ user: req.user.userId, _id: journalID });
-
+    console.log(req.user.userId)
     res.status(200).send(journal);
     console.log("got it!!");
   } catch (error) {

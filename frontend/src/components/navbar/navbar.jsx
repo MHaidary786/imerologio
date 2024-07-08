@@ -61,7 +61,7 @@ export default function Navbar({ isEditor }) {
   }, []);
 
   const goBack = () => {
-    navigate('/journals');
+    navigate("/journals");
   };
 
   const login = () => {

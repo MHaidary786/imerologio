@@ -6,8 +6,7 @@ const authMiddleware = require("../middlewares/jwtVerify")
 
 //have to add middleware in each query -- DONE
 router.get("/", authMiddleware, getJournals);
-router.get("/:id", authMiddleware, getOneJournal);
-router.get("/:date/:id", authMiddleware, getOneJournal);
+router.get("/edit/:id", authMiddleware, getOneJournal);
 
 router.post("/create",authMiddleware, createNewJournal);
 router.put("/update/:id",authMiddleware, updateJournal);
