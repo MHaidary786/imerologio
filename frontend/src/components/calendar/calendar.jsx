@@ -1,83 +1,101 @@
-import React, { useState , useRef } from "react";
+import React, { useState , useRef, useContext } from "react";
 import Calendar from "react-calendar";
 // import 'react-calendar/dist/Calendar.css';
 import "./calendar.css"
-
-// const OurCalendar = () => {
-//   const [date, setDate] = useState(new Date());
-
-//   const onChange = (newDate) => {
-//     setDate(newDate);
-//   };
-
-//   return (
-//     <div className="react-calendar">
-//       <div className="react-calendar__navigation__label">
-//         <span className="react-calendar__navigation__label__labelText">
-//           {date.toLocaleString('default', { month: 'long' })} {date.getFullYear()}
-//         </span>
-//       </div>
-//       <Calendar
-//         onChange={onChange}
-//         value={date}
-//       />
-//     </div>
-//   );
-// };
+import { useNavigate } from "react-router-dom";
+import { ParamContext } from "../ParamContext";
+import Navbar from "../navbar/navbar";
 
 const OurCalendar = () => {
-  const [date, setDate] = useState(new Date()); //current date
+  const [date, setDate] = useState(new Date()); // current date
   const calendarRef = useRef(null);
-  const scrollThreshold = 100; 
+  const scrollThreshold = 100;
+  const navigate = useNavigate();
+  const {setParam} = useContext(ParamContext);
 
-
-const handleScroll = (event) => {
-  const calendarContainer = calendarRef.current;
-  if (calendarContainer) {
-    if (event.deltaY < 0) { // if we scroll up
-      const monthsToSubtract = Math.abs(event.deltaY) / scrollThreshold;
-      const newDate = new Date(
-        date.getFullYear(),
-        date.getMonth() - monthsToSubtract,
-        1
-      );
-      setDate(newDate);
-    } else {
-      // if we Scroll down. we could also write it like this - if (event.deltaY >= 0)
-      const monthsToAdd = Math.ceil(Math.abs(event.deltaY) / scrollThreshold);
-      const newDate = new Date(  
-        date.getFullYear(),
-        date.getMonth() + monthsToAdd,
-        1
-      );
-      setDate(newDate); //we update the value of the date state
+  const handleScroll = (event) => {
+    const calendarContainer = calendarRef.current;
+    if (calendarContainer) {
+      if (event.deltaY < 0) {
+        // if we scroll up
+        const monthsToSubtract = Math.abs(event.deltaY) / scrollThreshold;
+        const newDate = new Date(
+          date.getFullYear(),
+          date.getMonth() - monthsToSubtract,
+          1
+        );
+        setDate(newDate);
+      } else {
+        // if we scroll down
+        const monthsToAdd = Math.ceil(Math.abs(event.deltaY) / scrollThreshold);
+        const newDate = new Date(
+          date.getFullYear(),
+          date.getMonth() + monthsToAdd,
+          1
+        );
+        setDate(newDate);
+      }
     }
-  }
-};
+  };
 
-const tileContent = ({ date, view }) => {
-  const currentDate = new Date()
-  if (view === 'month' && date.getMonth() === currentDate.getMonth() && date.getFullYear() === currentDate.getFullYear() && date.getDate() === new Date().getDate()) {
-    return <div className="current-day-marker"></div>;
-  }
-};
+  const tileClassName = ({ date: tileDate, view }) => {
+    if (view === "month") {
+      if (tileDate.getMonth() !== date.getMonth() || tileDate.getFullYear() !== date.getFullYear()) {
+        return "different-month";
+      }
+    }
+    return null;
+  };
 
+  const handleClick = (tileDate) => {
+    console.log("Tile clicked:", tileDate.getMonth()+1, tileDate.getDate(), tileDate.getFullYear(), tileDate);
+    setParam(tileDate)
+    navigate("/journals")
+  };
 
-return (
-  <div className="react-calendar" ref={calendarRef} onWheel={handleScroll}>
-    <div className="react-calendar__navigation__label">
-      <span className="react-calendar__navigation__label__labelText">
-        {date.toLocaleString("default", { month: "long" })}{" "}
-        {date.getFullYear()}
-      </span>
-    </div>
-    <Calendar
-      onChange={setDate}
-      value={date}
-      tileContent={tileContent}
-    />
-  </div>
-);
+  const tileContent = ({ date: tileDate, view }) => {
+    const today = new Date();
+    const isCurrentDay = tileDate.getDate() === today.getDate() && tileDate.getMonth() === today.getMonth() && tileDate.getFullYear() === today.getFullYear();
+    const isDifferentMonth = tileDate.getMonth() !== date.getMonth() || tileDate.getFullYear() !== date.getFullYear();
+    
+    if (view === "month") {
+      if (isDifferentMonth) {
+        return <div className="empty-tile"></div>;
+      } else if (isCurrentDay) {
+        return <div className="current-day-marker"></div>;
+      }
+    }
+    return null;
+  };
+
+  const onClickDay = (value, event) => {
+    const tileDate = value;
+    if (tileDate.getMonth() === date.getMonth() && tileDate.getFullYear() === date.getFullYear()) {
+      handleClick(tileDate);
+    }
+  };
+
+  return (
+    <>
+    <Navbar/>
+       <div className="calendar-container">
+      <div className="react-calendar__navigation__label">
+        <span className="react-calendar__navigation__label__labelText">
+          {date.toLocaleString("default", { month: "long" })} {date.getFullYear()}
+        </span>
+      </div>
+      <div className="react-calendar" ref={calendarRef} onWheel={handleScroll}>
+        <Calendar
+          onChange={setDate}
+          value={date}
+          tileClassName={tileClassName}
+          tileContent={tileContent}
+          onClickDay={onClickDay}
+        />
+      </div>
+    </div></>
+ 
+  );
 };
 
 export default OurCalendar;
