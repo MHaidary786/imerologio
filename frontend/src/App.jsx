@@ -12,14 +12,15 @@ import ChangeName from "./components/changeName/changeName";
 import NewJournal from "./components/newJournal/newJournal";
 import EditJournal from "./components/editJournal/editJournal";
 import NotFound from "./components/NotFound/NotFound"
+import { ParamProvider } from "./components/ParamContext";
 
 function App() {
   return (
     <div className="App">
 
       {/* pass true to isEditor and the other Navbar will appear */}
-
-      <Routes>
+<ParamProvider>
+<Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
@@ -34,6 +35,8 @@ function App() {
         <Route path="*" element={<NotFound />} />
 
       </Routes>
+</ParamProvider>
+     
     </div>
   );
 }

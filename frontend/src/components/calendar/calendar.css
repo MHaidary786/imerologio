@@ -2,43 +2,50 @@ body {
   background-color: #e5eeeb !important; 
 }
 
+.calendar-container{
+  display: flex ;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  align-content: space-around;
+  margin-top: 60px;
+  font-size: 1.8rem;
+}
+
 .react-calendar {
-  background: #e5eeeb;
-  border: none;
+  background: #e5eeeb !important;
+  border: none !important;
   line-height: 1.5em;
   width: 60% !important;
-  padding-top: 10px;
-  margin: auto;
-  display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    align-content: space-around;
+  /* padding-top: 20px ; */
+  margin:10px auto ;
+  
 }
 
 .react-calendar__tile {
-  background: #ffffff;
-  border: 0.5px solid #e5eeeb; 
+  background: #ffffff !important;
+  border: 0.5px solid #e5eeeb !important; 
   /* height: 6em; */
-  aspect-ratio: 1;
+  aspect-ratio: 1 !important;
+  font-weight: bold !important;
 }
 
 .react-calendar__tile:hover {
   background: #e5eeeb !important;
-  color: black
+  color: black !important ;
 }
 
 .react-calendar__tile--active {
   background: #ffffff;
-  color: black;
+  color: black !important;
 }
 .react-calendar__tile:active{
   background: #ade6cc !important;
 }
 
 .react-calendar__navigation button {
-  background: #ade6cc;
-  border: none;
+  background: #ade6cc !important;
+  border: none !important;
   border-radius: 5px;
 }
 
@@ -58,14 +65,36 @@ body {
   font-weight: bold;
   padding-left: 20px;
   font-size: 20px;
+  position: relative;
+  margin-left: 150px;
 }
 
 .current-day-marker {
-  background-color: #28efa8; 
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  margin: 0 auto;
+  background-color: #28efa8 !important; 
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 50% !important;
+  margin: 0 auto !important;
+}
+
+.react-calendar__month-view__days__day--weekend{
+  color: #009761 !important;
+}
+
+
+/* new */
+.different-month {
+  background-color: #d5e8e2 !important; /* Άλλαξε το χρώμα όπως επιθυμείς */
+  color: transparent !important; /* Κάνει τους αριθμούς αόρατους */
+}
+
+.different-month:hover {
+  color: transparent !important;
+  background-color: #d5e8e2 !important;
+}
+
+.empty-tile {
+  visibility: hidden !important; /* Κρύβει το περιεχόμενο του πλακιδίου */
 }
 
 
