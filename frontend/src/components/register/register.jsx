@@ -85,7 +85,7 @@ export default function Register() {
               </p>
             </div>
 
-            <button className={classes.registerBtn} type="submit">Sing up</button>
+            <button className={classes.registerBtn} type="submit">Sign up</button>
           </form>
 
           <hr className={classes.hr} />
