@@ -8,7 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
 import { FaTags } from "react-icons/fa";
 import logo from "../../assets/imerologio-logo.png";
-import axios from "axios"
+import axios from "axios";
 
 import DatePicker from "react-datetime-picker";
 import "react-datetime-picker/dist/DateTimePicker.css";
@@ -21,21 +21,14 @@ export default function NewJournal() {
   const [text, setText] = useState("");
   const textAreaRef = useRef(null);
   const [date, setDate] = useState(new Date());
-  const [tags, setTags] = useState([])
-  const [photoUrl, setPhotoUrl] = useState("")
-  const [selectedValue, setSelectedValue] = useState([]);
-  const [showTagsPopup, setShowTagsPopup] = useState(true);
+  const [tags, setTags] = useState([]);
+  const [photoUrl, setPhotoUrl] = useState("");
 
   const [tagValue, setTagValue] = useState("");
-  const [tag, setTag] = useState([]); // Initialize as an empty array
+  const [tag, setTag] = useState([]);
   const [tagsPopup, setTagsPopup] = useState(false);
 
   const [emotion, setEmotion] = useState("");
-
-  const handleSignOut = () => {
-    localStorage.removeItem("token");
-    navigate("/");
-  };
 
   const addTags = (e) => {
     if (e.keyCode === 13 && tagValue) {
@@ -74,20 +67,8 @@ export default function NewJournal() {
     return characters;
   };
 
-  function onSelect(selectedList, selectedItem) {
-    setSelectedValue(selectedList);
-}
-
-function onRemove(selectedList, removedItem) {
-  setSelectedValue(selectedList);
-}
-
-const toggleTagsPopup = () => {
-  setShowTagsPopup(!showTagsPopup);
-};
-
   const handleAddJournal = () => {
-    if(text && tag && date && emotion && photoUrl) {
+    if (text && tag && date && emotion && photoUrl) {
       try {
         const newJournal = {
           text: text,
@@ -104,16 +85,10 @@ const toggleTagsPopup = () => {
       } catch (error) {
         console.log(error);
       }
-  
-      setPhotoUrl("");
-      setTag([]); // Reset to an empty array
-      setDate(new Date());
-      setText("");
-      setEmotion("");
+
       navigate("/journals");
-    }
-    else{
-      console.log("Please fill all inputs")
+    } else {
+      console.log("Please fill all inputs");
     }
   };
 
@@ -149,7 +124,6 @@ const toggleTagsPopup = () => {
 
       <footer className={classes.journalFooter}>
         <div>
-
           <input
             type="text"
             className={classes.photoUrlInput}
@@ -202,5 +176,3 @@ const toggleTagsPopup = () => {
     </div>
   );
 }
-
-
