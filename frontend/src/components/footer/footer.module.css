@@ -13,7 +13,7 @@
 }
 
 p {
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .wrapper .items {
@@ -21,11 +21,16 @@ p {
 }
 
 .row {
-  display: flex;
+  display: block;
   flex-direction: row;
-  justify-content: space-between;
+  
 }
 
 .row * {
-  padding: 0 40px;
+  padding: 0 5px;
+}
+
+.row a{
+  text-decoration: none;
+  color: #28efa8;
 }

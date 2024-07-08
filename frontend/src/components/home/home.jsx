@@ -43,7 +43,6 @@ export default function home() {
                   Login
                 </button>
               </Link>
-              <h2>or</h2>
               <Link to="/register">
                 <button className={classes.btn}>Register</button>
               </Link>
