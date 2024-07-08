@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
-const URI = "mongodb+srv://oula:69NWds58r1S8qZ7R@firstcluster.woitwky.mongodb.net/imerologio";
+require('dotenv').config();
+
+const URI = process.env.MONGO_URL;
 
 async function main(){
     await mongoose.connect(URI);
