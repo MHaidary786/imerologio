@@ -64,6 +64,7 @@ export default function Navbar({ isEditor }) {
   const toggleDropdown = () => {
     setDropdownVisible((prevState) => !prevState);
   }
+
   const goBack = () => {
     navigate("/journals");
   };
@@ -148,7 +149,7 @@ export default function Navbar({ isEditor }) {
       {/* Navbar component for Editor */}
       <div className={isEditor ? classes.EditorWrapper : classes.Hiddenwrapper}>
         <div>
-          <IoIosArrowBack className={classes.logoutIcon} onClick={goBack} />
+          <IoIosArrowBack className={classes.dropdownList} onClick={goBack} />
         </div>
         <Link to="/login">
           <img className={classes.logo} src={logo} alt="logo" />

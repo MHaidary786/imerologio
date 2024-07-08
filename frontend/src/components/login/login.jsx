@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import classes from "./login.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Footer from "../footer/footer";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -43,6 +44,8 @@ export default function Login() {
   };
 
   return (
+    <>
+    
     <div className={classes.Container}>
       <div className={classes.right}></div>
       <div className={classes.left}>
@@ -100,5 +103,7 @@ export default function Login() {
         </div>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 }

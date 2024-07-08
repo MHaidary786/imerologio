@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import classes from "./register.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Footer from "../footer/footer";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -34,6 +35,7 @@ export default function Register() {
   };
 
   return (
+    <>
     <div className={classes.Container}>
       <div className={classes.right}></div>
       <div className={classes.left}>
@@ -93,5 +95,7 @@ export default function Register() {
         </div>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 }
