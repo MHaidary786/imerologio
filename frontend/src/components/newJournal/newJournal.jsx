@@ -81,12 +81,14 @@ export default function NewJournal() {
           .post("http://localhost:8080/journal/create", newJournal, {
             headers: { "x-auth-token": `${localStorage.getItem("token")}` },
           })
-          .then((res) => {});
+          .then((res) => {
+            navigate("/journals");
+          });
       } catch (error) {
         console.log(error);
       }
 
-      navigate("/journals");
+      
     } else {
       console.log("Please fill all inputs");
     }
