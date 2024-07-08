@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import classes from "./navbar.module.css";
-import { IoIosLogOut, IoIosArrowBack } from "react-icons/io";
+import { IoIosArrowDropdown, IoIosArrowBack } from "react-icons/io";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/imerologio-logo.png";
 import { jwtDecode } from "jwt-decode";
@@ -10,6 +10,7 @@ import { withRouter } from "react-router-dom";
 export default function Navbar({ isEditor }) {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
+  const [dropdownVisible, setDropdownVisible] = useState(false);
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -60,12 +61,16 @@ export default function Navbar({ isEditor }) {
     fetchUser();
   }, []);
 
-  const goBack = () => {
-    navigate('/journals');
+  const toggleDropdown = () => {
+    setDropdownVisible((prevState) => !prevState);
   };
 
-  const login = () => {
-    navigate("/login");
+  const goBack = () => {
+    navigate("/journals");
+  };
+
+  const changeName = () => {
+    navigate("/changeName");
   };
   const changepass = () => {
     navigate("/changepassword");
@@ -73,6 +78,35 @@ export default function Navbar({ isEditor }) {
 
   const getActiveClass = ({ isActive }) =>
     isActive ? classes.active : undefined;
+
+  const handleMenuItemClick = (action) => {
+    setDropdownVisible(false); // Hide dropdown after an action is clicked
+    switch (action) {
+      case "changeName":
+        changeName();
+        console.log("Change Name clicked");
+        break;
+      case "changePassword":
+        changepass();
+        console.log("Change Password clicked");
+        break;
+      case "logout":
+        logout();
+        break;
+      default:
+        break;
+    }
+  };
+
+  const DropDownMenu = () => (
+    <ul className={classes.dropdownMenu}>
+      <li onClick={() => handleMenuItemClick("changeName")}>Change Name</li>
+      <li onClick={() => handleMenuItemClick("changePassword")}>
+        Change Password
+      </li>
+      <li onClick={() => handleMenuItemClick("logout")}>Logout</li>
+    </ul>
+  );
 
   return (
     <div className={classes.container}>
@@ -99,12 +133,19 @@ export default function Navbar({ isEditor }) {
               </NavLink>
             </li>
             <li>
-              <span>{user ? "Hello " + user.name + "! " : ""}</span>
-              <IoIosLogOut className={classes.logoutIcon} onClick={logout} />
+              <span onClick={toggleDropdown}>
+                {user ? "Hello " + user.name + "! " : ""}
+              </span>
+              <IoIosArrowDropdown
+                className={classes.dropdownList}
+                onClick={toggleDropdown}
+              />
+              {dropdownVisible && <DropDownMenu />}
             </li>
           </ul>
         </nav>
       </div>
+
       {/* Navbar component for Editor */}
       <div className={isEditor ? classes.EditorWrapper : classes.Hiddenwrapper}>
         <div>
@@ -114,8 +155,14 @@ export default function Navbar({ isEditor }) {
           <img className={classes.logo} src={logo} alt="logo" />
         </Link>
         <div>
-          <span>{user ? "Hello " + user.name + "! " : ""}</span>
-          <IoIosLogOut className={classes.logoutIcon} onClick={logout} />
+          <span onClick={toggleDropdown}>
+            {user ? "Hello " + user.name + "! " : ""}
+          </span>
+          <IoIosArrowDropdown
+            className={classes.dropdownList}
+            onClick={toggleDropdown}
+          />
+          {dropdownVisible && <DropDownMenu />}
         </div>
       </div>
     </div>
