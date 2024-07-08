@@ -38,7 +38,7 @@ export default function ChangeName() {
 
     try {
       const res = await axios.put(
-        `http://localhost:8080/user/update/${userData.userId}`,
+        `https://imerologio.onrender.com/user/update/${userData.userId}`,
         newDetails
       );
 

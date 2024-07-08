@@ -17,7 +17,7 @@ export default function Login() {
 
     try {
       const user = { email, password };
-      const res = await axios.post("http://localhost:8080/user/login", user);
+      const res = await axios.post("https://imerologio.onrender.com/user/login", user);
 
       if (res.status === 401) {
         setError("Invalid credentials. Please try again.");

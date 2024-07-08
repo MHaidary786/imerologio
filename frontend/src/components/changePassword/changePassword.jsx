@@ -28,7 +28,7 @@ export default function ChangePassword() {
         const newDetails = {password : password, newPassword : newPassword}
 
         try {
-            axios.put(`http://localhost:8080/user/update/changepassword/${getToken().userId}`, newDetails)   
+            axios.put(`https://imerologio.onrender.com/user/update/changepassword/${getToken().userId}`, newDetails)   
             .then((res) => {
                 if(res.status === 200){
                     setPassword("")

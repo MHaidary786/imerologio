@@ -18,7 +18,7 @@ export default function Register() {
 
     try {
       await axios
-        .post("http://localhost:8080/user/register", newUser)
+        .post("https://imerologio.onrender.com/user/register", newUser)
         .then((res) => {
           console.log(res.data);
         });

@@ -27,7 +27,7 @@ export default function Journals() {
   //   if (!param){
   //     try {
   //       await axios
-  //         .get("http://localhost:8080/journal/", {
+  //         .get("https://imerologio.onrender.com/journal/", {
   //           headers: { "x-auth-token": `${localStorage.getItem("token")}` },
   //         })
   //         .then((res) => {
@@ -40,7 +40,7 @@ export default function Journals() {
   //   else {
   //     try {
   //       await axios
-  //         .get(`http://localhost:8080/journal/${param}`, {
+  //         .get(`https://imerologio.onrender.com/journal/${param}`, {
   //           headers: { "x-auth-token": `${localStorage.getItem("token")}` },
   //         })
   //         .then((res) => {
@@ -54,7 +54,7 @@ export default function Journals() {
   const getAllJournals = async (param) => {
     try {
       await axios
-        .get("http://localhost:8080/journal/", {
+        .get("https://imerologio.onrender.com/journal/", {
           headers: { "x-auth-token": `${localStorage.getItem("token")}` },
         })
         .then((res) => {
@@ -74,7 +74,7 @@ export default function Journals() {
   const DeleteJournal = async (_id) => {
     try {
       await axios
-        .delete(`http://localhost:8080/journal/delete/${_id}`, {
+        .delete(`https://imerologio.onrender.com/journal/delete/${_id}`, {
           headers: { "x-auth-token": `${localStorage.getItem("token")}` },
         })
         .then((res) => {

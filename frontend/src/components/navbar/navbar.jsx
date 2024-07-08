@@ -40,7 +40,7 @@ export default function Navbar({ isEditor }) {
 
   const getUsers = async () => {
     try {
-      const res = await axios.get("http://localhost:8080/user/allusers");
+      const res = await axios.get("https://imerologio.onrender.com/user/allusers");
       return res.data;
     } catch (error) {
       console.error(error);

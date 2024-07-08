@@ -136,7 +136,7 @@ export default function NewJournal() {
       };
 
       axios
-        .post("http://localhost:8080/journal/create", newJournal, {
+        .post("https://imerologio.onrender.com/journal/create", newJournal, {
           headers: { "x-auth-token": `${localStorage.getItem("token")}` },
         })
         .then(() => {

@@ -47,7 +47,7 @@ export default function EditJournal() {
     const fetchJournal = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8080/journal/edit/${journalId}`,
+          `https://imerologio.onrender.com/journal/edit/${journalId}`,
           {
             headers: { "x-auth-token": `${localStorage.getItem("token")}` },
           }
@@ -101,7 +101,7 @@ export default function EditJournal() {
 
       try {
         await axios.put(
-          `http://localhost:8080/journal/update/${journalId}`,
+          `https://imerologio.onrender.com/journal/update/${journalId}`,
           updatedJournal,
           {
             headers: { "x-auth-token": `${localStorage.getItem("token")}` },
