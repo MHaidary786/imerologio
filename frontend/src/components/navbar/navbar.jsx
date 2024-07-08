@@ -63,7 +63,7 @@ export default function Navbar({ isEditor }) {
 
   const toggleDropdown = () => {
     setDropdownVisible((prevState) => !prevState);
-
+  }
   const goBack = () => {
     navigate("/journals");
   };
