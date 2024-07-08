@@ -90,6 +90,18 @@ textarea:focus {
   justify-content: center;
 }
 
+
+
+.journalFooter .emotionDropDown {
+  margin: 0 15px;
+  }
+  
+  .journalFooter .photoUrlInput{
+    border: none;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+
 .tagsBtn {
   margin: 0 20px;
   font-size: 1.5rem;

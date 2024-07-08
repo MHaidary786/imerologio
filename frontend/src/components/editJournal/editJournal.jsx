@@ -4,12 +4,17 @@ import { FaTags } from "react-icons/fa";
 import { FiSave } from "react-icons/fi";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
+import { IoIosHeart } from "react-icons/io";
+import { FaAngry, FaRegSurprise } from "react-icons/fa";
+import { RiEmotionSadLine, RiEmotionHappyLine } from "react-icons/ri"; // Import emoji icons
+
 import axios from "axios";
 import Navbar from "../navbar/navbar";
 import DatePicker from "react-datetime-picker";
 import "react-datetime-picker/dist/DateTimePicker.css";
 import "react-calendar/dist/Calendar.css";
 import "react-clock/dist/Clock.css";
+import Dropdown from "react-bootstrap/Dropdown";
 
 export default function EditJournal() {
   const navigate = useNavigate();
@@ -23,6 +28,16 @@ export default function EditJournal() {
   const [tagsPopup, setTagsPopup] = useState(false);
   const [emotion, setEmotion] = useState("");
   const [photoUrl, setPhotoUrl] = useState("");
+
+  const emotions = [
+    { label: "Happy", icon: <RiEmotionHappyLine /> },
+    { label: "Sad", icon: <RiEmotionSadLine /> },
+    { label: "Love", icon: <IoIosHeart /> },
+    { label: "Angry", icon: <FaAngry /> },
+    { label: "Surprised", icon: <FaRegSurprise /> },
+    // Add more emotions as needed
+  ];
+
 
   useEffect(() => {
     if (textAreaRef.current) {
@@ -129,28 +144,30 @@ export default function EditJournal() {
         </div>
       </div>
       <footer className={classes.journalFooter}>
-        <div>
-          <input
-            type="text"
-            className={classes.emotionInput}
-            value={emotion}
-            onChange={(e) => setEmotion(e.target.value)}
-            placeholder="Emotion"
-          />
-          <input
-            type="text"
-            className={classes.photoUrlInput}
-            value={photoUrl}
-            onChange={(e) => setPhotoUrl(e.target.value)}
-            placeholder="Photo URL"
-          />
-        </div>
-        <div>
-          <FaTags className={classes.tagsBtn} onClick={togglePopup} />
-        </div>
-        <div>
-          {countWords()} Words, {countCharacters()} Characters
-        </div>
+        <Dropdown className={classes.emotionDropDown}>
+          <Dropdown.Toggle variant="success" id="dropdown-basic">
+            {emotion ? emotion : "Emotion"}
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            {emotions.map((emo) => (
+              <Dropdown.Item
+                key={emo.label}
+                onClick={() => setEmotion(emo.label)}
+              >
+                {emo.icon} {emo.label}
+              </Dropdown.Item>
+            ))}
+          </Dropdown.Menu>
+        </Dropdown>
+        <input
+          type="text"
+          className={classes.photoUrlInput}
+          value={photoUrl}
+          onChange={(e) => setPhotoUrl(e.target.value)}
+          placeholder="Enter Photo URL"
+        />
+        <FaTags className={classes.tagsBtn} onClick={togglePopup} />
+        {countWords()} Words, {countCharacters()} Characters
       </footer>
       <div
         className={
