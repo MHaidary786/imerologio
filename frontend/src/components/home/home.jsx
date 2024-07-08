@@ -3,6 +3,7 @@ import classes from "./home.module.css";
 import photo1 from "../../assets/photo1.png";
 import { Link } from "react-router-dom";
 import Navbar from "../navbar/navbar";
+import Footer from "../footer/footer";
 
 export default function home() {
 
@@ -50,6 +51,7 @@ export default function home() {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 }

@@ -11,6 +11,7 @@ import {
 import { MdSort } from "react-icons/md";
 import Navbar from "../navbar/navbar";
 import { ParamContext } from "../ParamContext";
+import Footer from "../footer/footer";
 
 export default function Journals() {
   const [journals, setJournals] = useState([]);
@@ -97,6 +98,7 @@ export default function Journals() {
   };
 
   return (
+    <>
     <div className={classes.container}>
       <Navbar isEditor={false} />
       <div className={classes.container}>
@@ -154,5 +156,7 @@ export default function Journals() {
         </div>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 }

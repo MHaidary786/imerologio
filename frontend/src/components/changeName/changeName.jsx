@@ -4,6 +4,7 @@ import logo from "../../assets/imerologio-logo.png";
 import {jwtDecode} from "jwt-decode"; // Corrected import
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Footer from "../footer/footer";
 
 export default function ChangeName() {
   const [password, setPassword] = useState("");
@@ -66,6 +67,7 @@ export default function ChangeName() {
   };
 
   return (
+    <>
     <div className={classes.container}>
       <form className={classes.wrapper} onSubmit={handleChangePassword}>
         <img src={logo} alt="Imerologio" />
@@ -117,5 +119,7 @@ export default function ChangeName() {
         </div>
       </form>
     </div>
+    <Footer/>
+    </>
   );
 }
