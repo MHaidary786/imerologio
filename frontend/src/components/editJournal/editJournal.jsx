@@ -92,7 +92,7 @@ export default function EditJournal() {
             headers: { "x-auth-token": `${localStorage.getItem("token")}` },
           }
         );
-        navigate(`/journals/${journalId}`); // Redirect to the updated journal page or journals list
+        navigate(`/journals/`); // Redirect to the updated journal page or journals list
       } catch (error) {
         console.error("Error updating journal:", error);
       }
