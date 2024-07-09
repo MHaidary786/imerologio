@@ -1,8 +1,15 @@
 /* General Styles */
 .journalContainer {
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
   min-height: 100vh;
+}
+
+.photo{
+  width: 500px;
+  mix-blend-mode: multiply;
 }
 
 header,

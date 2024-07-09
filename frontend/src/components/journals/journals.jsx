@@ -11,6 +11,7 @@ import {
 import { MdSort } from "react-icons/md";
 import Navbar from "../navbar/navbar";
 import { ParamContext } from "../ParamContext";
+import Footer from "../footer/footer";
 
 export default function Journals() {
   const [journals, setJournals] = useState([]);
@@ -25,9 +26,13 @@ export default function Journals() {
 
   const getAllJournals = async (localParam) => {
     console.log ("this is my localparam: ", localParam)
+
+
+  const getAllJournals = async (param) => {
+
     try {
       await axios
-        .get("http://localhost:8080/journal/", {
+        .get("https://imerologio.onrender.com/journal/", {
           headers: { "x-auth-token": `${localStorage.getItem("token")}` },
         })
         .then((res) => {
@@ -48,7 +53,7 @@ export default function Journals() {
   const DeleteJournal = async (_id) => {
     try {
       await axios
-        .delete(`http://localhost:8080/journal/delete/${_id}`, {
+        .delete(`https://imerologio.onrender.com/journal/delete/${_id}`, {
           headers: { "x-auth-token": `${localStorage.getItem("token")}` },
         })
         .then((res) => {
@@ -86,6 +91,7 @@ export default function Journals() {
   }, [location.pathname]);
 
   return (
+    <>
     <div className={classes.container}>
       <Navbar isEditor={false} reloadPage={reloadPage}/>
       <div className={classes.container}>
@@ -143,5 +149,7 @@ export default function Journals() {
         </div>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 }

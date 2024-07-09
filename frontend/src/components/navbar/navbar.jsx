@@ -45,7 +45,7 @@ export default function Navbar({ isEditor, reloadPage  }) {
 
   const getUsers = async () => {
     try {
-      const res = await axios.get("http://localhost:8080/user/allusers");
+      const res = await axios.get("https://imerologio.onrender.com/user/allusers");
       return res.data;
     } catch (error) {
       console.error(error);
@@ -154,7 +154,7 @@ export default function Navbar({ isEditor, reloadPage  }) {
       {/* Navbar component for Editor */}
       <div className={isEditor ? classes.EditorWrapper : classes.Hiddenwrapper}>
         <div>
-          <IoIosArrowBack className={classes.logoutIcon} onClick={goBack} />
+          <IoIosArrowBack className={classes.dropdownList} onClick={goBack} />
         </div>
         <Link to="/login">
           <img className={classes.logo} src={logo} alt="logo" />

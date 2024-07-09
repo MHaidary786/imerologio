@@ -4,6 +4,7 @@ import logo from "../../assets/imerologio-logo.png"
 import { jwtDecode } from "jwt-decode";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Footer from '../footer/footer';
 
 export default function ChangePassword() {
     const [password, setPassword] = useState('')
@@ -27,7 +28,7 @@ export default function ChangePassword() {
         const newDetails = {password : password, newPassword : newPassword}
 
         try {
-            axios.put(`http://localhost:8080/user/update/changepassword/${getToken().userId}`, newDetails)   
+            axios.put(`https://imerologio.onrender.com/user/update/changepassword/${getToken().userId}`, newDetails)   
             .then((res) => {
                 if(res.status === 200){
                     setPassword("")
@@ -55,6 +56,7 @@ export default function ChangePassword() {
 
 
   return (
+    <>
     <div className={classes.container}>
         <form className={classes.wrapper} onSubmit={handelChangePassword}>
             <img src={logo} alt="Imerologio" />
@@ -93,5 +95,7 @@ export default function ChangePassword() {
             </div>
         </form>
     </div>
+    <Footer/>
+    </>
   )
 }

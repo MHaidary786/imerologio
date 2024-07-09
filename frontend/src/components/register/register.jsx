@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import classes from "./register.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Footer from "../footer/footer";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -17,7 +18,7 @@ export default function Register() {
 
     try {
       await axios
-        .post("http://localhost:8080/user/register", newUser)
+        .post("https://imerologio.onrender.com/user/register", newUser)
         .then((res) => {
           console.log(res.data);
         });
@@ -34,6 +35,7 @@ export default function Register() {
   };
 
   return (
+    <>
     <div className={classes.Container}>
       <div className={classes.right}></div>
       <div className={classes.left}>
@@ -83,7 +85,7 @@ export default function Register() {
               </p>
             </div>
 
-            <button className={classes.registerBtn} type="submit">Sing up</button>
+            <button className={classes.registerBtn} type="submit">Sign up</button>
           </form>
 
           <hr className={classes.hr} />
@@ -93,5 +95,7 @@ export default function Register() {
         </div>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 }

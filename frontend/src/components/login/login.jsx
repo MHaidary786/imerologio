@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import classes from "./login.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Footer from "../footer/footer";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -16,7 +17,7 @@ export default function Login() {
 
     try {
       const user = { email, password };
-      const res = await axios.post("http://localhost:8080/user/login", user);
+      const res = await axios.post("https://imerologio.onrender.com/user/login", user);
 
       if (res.status === 401) {
         setError("Invalid credentials. Please try again.");
@@ -43,6 +44,8 @@ export default function Login() {
   };
 
   return (
+    <>
+    
     <div className={classes.Container}>
       <div className={classes.right}></div>
       <div className={classes.left}>
@@ -100,5 +103,7 @@ export default function Login() {
         </div>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 }

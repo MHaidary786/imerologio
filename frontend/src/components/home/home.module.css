@@ -12,7 +12,7 @@ body {
 
 /* Header styles */
 .header {
-  height: 15vh;
+  height: 10px;
   width: 100%;
   background-color: #e5eeeb;
   display: flex;
@@ -51,14 +51,13 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 20px 100px;
 }
 
 .right .photo {
   width: 100%;
-  max-width: 650px;
+  max-width: 400px;
   height: auto;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .left h1 {
@@ -73,9 +72,9 @@ body {
 /* Bottom Row styles */
 .bottomRow {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  padding: 20px 0;
+  padding: 20px;
 }
 
 .loginWrapper {
@@ -88,7 +87,7 @@ body {
 }
 
 .loginWrapper h2{
-  padding: 10px 20px;
+  /* padding: 10px 20px; */
   color: rgb(49, 48, 48);
   font-size: 18px;
   margin: 0 10px;
@@ -99,13 +98,13 @@ body {
 
 .btn {
   padding: 10px 20px;
-  background-color: #009761;
+  background-color: #10d48e;
   color: white;
   border: none;
   cursor: pointer;
   font-size: 18px;
   font-weight: 500;
-  margin: 10px;
+  margin: 100px;
   border-radius: 5px;
   width: 200%;
   max-width: 200px;
@@ -113,7 +112,7 @@ body {
 }
 
 .btn:hover {
-  background-color: #10d48e;
+  background-color: #009761;
 }
 
 /* Responsive design */
