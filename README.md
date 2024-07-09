@@ -15,6 +15,7 @@ Project goals include:
   - [Table of Contents](#table-of-contents)
   - [Description](#description)
   - [Installation](#installation)
+  - [You can also use our App by clicking here Imerologio App](#you-can-also-use-our-app-by-clicking-here-imerologio-app)
   - [How to Use the Project](#how-to-use-the-project)
     - [Usage examples:](#usage-examples)
   - [Credits](#credits)
@@ -59,6 +60,8 @@ To install and run "Imerologio" locally, follow these steps:
    ```bash
    cd ../frontend
    npm start
+
+## You can also use our App by clicking here [Imerologio App](https://imerologio-app.netlify.app/)
    
 ## How to Use the Project
 Once you have installed and started the project, you can use it as follows:

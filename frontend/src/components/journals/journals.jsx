@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import classes from "./journals.module.css";
 import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, useLocation  } from "react-router-dom";
 import {
   IoIosHeart,
   IoIosPricetag,
@@ -16,60 +16,39 @@ import Footer from "../footer/footer";
 export default function Journals() {
   const [journals, setJournals] = useState([]);
   const navigate = useNavigate();
-  const { param } = useContext(ParamContext);
+  const location = useLocation();
+  const { param, updateParam } = useContext(ParamContext);
+  const [localParam, setLocalParam] = useState(param);
 
   useEffect(() => {
-    console.log("use effect param is", param);
-    getAllJournals(param);
-  }, [param]);
+    getAllJournals(localParam);
+  }, [localParam]);
 
-  // const getAllJournals = async (param) => {
-  //   if (!param){
-  //     try {
-  //       await axios
-  //         .get("https://imerologio.onrender.com/journal/", {
-  //           headers: { "x-auth-token": `${localStorage.getItem("token")}` },
-  //         })
-  //         .then((res) => {
-  //           setJournals(res.data);
-  //         });
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
-  //   else {
-  //     try {
-  //       await axios
-  //         .get(`https://imerologio.onrender.com/journal/${param}`, {
-  //           headers: { "x-auth-token": `${localStorage.getItem("token")}` },
-  //         })
-  //         .then((res) => {
-  //           setJournals(res.data);
-  //         });
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
+  const getAllJournals = async (localParam) => {
+    console.log ("this is my localparam: ", localParam)
+
 
   const getAllJournals = async (param) => {
+
     try {
       await axios
         .get("https://imerologio.onrender.com/journal/", {
           headers: { "x-auth-token": `${localStorage.getItem("token")}` },
         })
         .then((res) => {
-          if (!param){
+          if (!localParam){
             setJournals(res.data);
           } else {            
             setJournals(res.data.filter(journal => {let convertJournalDate = new Date(journal.date);
-              return convertJournalDate.toDateString() === param.toDateString();
+              return convertJournalDate.toDateString() === localParam.toDateString();
             }));
-          }          
+          }      
         });
     } catch (error) {
       console.log(error);
     }
   };
+
 
   const DeleteJournal = async (_id) => {
     try {
@@ -80,6 +59,7 @@ export default function Journals() {
         .then((res) => {
           setJournals(journals.filter((journal) => journal._id !== _id));
         });
+        setLocalParam(null);
     } catch (error) {
       console.log(error);
     }
@@ -97,10 +77,23 @@ export default function Journals() {
     );
   };
 
+
+  //
+  const reloadPage = () => { 
+    updateParam(null); 
+    setLocalParam(null); 
+    navigate("/journals", { replace: true }); 
+  };
+
+  useEffect(() => { 
+    if (location.pathname === "/journals") {
+    }
+  }, [location.pathname]);
+
   return (
     <>
     <div className={classes.container}>
-      <Navbar isEditor={false} />
+      <Navbar isEditor={false} reloadPage={reloadPage}/>
       <div className={classes.container}>
         <div className={classes.wrapper}>
           <div className={classes.title}>

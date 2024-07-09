@@ -7,10 +7,15 @@ import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
 
-export default function Navbar({ isEditor }) {
+export default function Navbar({ isEditor, reloadPage  }) {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [dropdownVisible, setDropdownVisible] = useState(false);
+
+  const handleClick = () => {
+    reloadPage(); //we use this to reload the page
+    navigate("/journals"); // navigate at journals
+  };
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -118,7 +123,7 @@ export default function Navbar({ isEditor }) {
         <nav className={isLoggedIn() ? classes.navbar : classes.Hiddennavbar}>
           <ul>
             <li>
-              <NavLink to="/journals" className={getActiveClass}>
+              <NavLink to="/journals" className={getActiveClass}  onClick={handleClick}>
                 Journals
               </NavLink>
             </li>
