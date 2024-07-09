@@ -27,12 +27,12 @@ export default function home() {
             <div className={classes.left}>
               <h1>About us</h1>
               <p>
-                "Imerologio" is a full stack calendar application that allows
-                users to create, edit, delete, and search for daily notes. The
-                application uses MongoDB, Express, React, and CSS. Project goals
-                include: Adding and editing notes with photos, emotions,
-                locations, and tags. Styling text within notes. Searching notes
-                based on tags. CRUD operations for journals and users.
+                "Imerologio" is a full stack calendar application, designed as a personal diary,
+                empowers users to effortlessly capture their daily moments. With seamless functionality
+                powered by MongoDB, Express, React, and CSS, users can create, edit, and manage journals 
+                tailored to any day of their choosing. They can enrich their entries by adding photos, 
+                express emotions or adding tags. Our app provides a sanctuary for reflection and expression,
+                where every journal entry becomes a cherished memory to revisit and cherish.
               </p>
             </div>
           </div>
