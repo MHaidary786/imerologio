@@ -24,12 +24,7 @@ export default function Journals() {
     getAllJournals(localParam);
   }, [localParam]);
 
-  const getAllJournals = async (localParam) => {
-    console.log ("this is my localparam: ", localParam)
-
-
   const getAllJournals = async (param) => {
-
     try {
       await axios
         .get("https://imerologio.onrender.com/journal/", {
@@ -49,7 +44,6 @@ export default function Journals() {
     }
   };
 
-
   const DeleteJournal = async (_id) => {
     try {
       await axios
@@ -59,7 +53,6 @@ export default function Journals() {
         .then((res) => {
           setJournals(journals.filter((journal) => journal._id !== _id));
         });
-        setLocalParam(null);
     } catch (error) {
       console.log(error);
     }
