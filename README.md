@@ -61,7 +61,7 @@ To install and run "Imerologio" locally, follow these steps:
    cd ../frontend
    npm start
 
-## You can also use our App by clicking here [Imerologio App](https://imerologio-app.netlify.app/)
+## You can also use our App by clicking here [Imerologio App](https://imerologio.netlify.app/)
    
 ## How to Use the Project
 Once you have installed and started the project, you can use it as follows:
